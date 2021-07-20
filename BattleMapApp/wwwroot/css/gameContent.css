@@ -1,0 +1,52 @@
+﻿.mainScreenDiv {
+    width: 1000px;
+    height: 600px;
+    display: block;
+    position: absolute;
+}
+
+.mapDiv {
+    height: inherit;
+    width: inherit;
+    position:inherit;
+    background-color: mediumpurple;
+    z-index: 0;
+    overflow:scroll;
+}
+
+.token {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background-color: forestgreen;
+    z-index: 2;
+}
+
+.map {
+    position: inherit;
+    z-index: 1;
+}
+
+.tokenImage {
+    display: block;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.fog {
+    display: block;
+    position: inherit;
+    pointer-events: none;
+    /*Don't set fog's size in CSS, because it's scaling off bitmap, and thus making
+      drawing fog annoying to calculate; setting size in html makes it a lot easier*/
+    z-index: 3;
+}
+
+.grid {
+    display: block;
+    position: inherit;
+    pointer-events: none;
+    z-index: 4;
+}

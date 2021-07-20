@@ -1,0 +1,78 @@
+﻿@model ConnectionInfo;
+
+<link rel="stylesheet" href="~/css/gmTools.css" />
+
+<!--gm toolbar menu-->
+<div id="gmToolbar">
+    <div id="gmToolbarMover"></div>
+    <p>Fog's controls</p>
+    <div id="fogSection">
+        <div>
+            <button class="gmToolBtn" id="drawFogBtn">Fog</button>
+            <button class="gmToolBtn" id="clearFogBtn">Clear Fog</button>
+        </div>
+        <p style="font-size: 12px;">Markup size</p>
+        <input type="range" min="20" max="200" value="110" class="fogSlider" id="fogSlider" style="margin-bottom:15px;" />
+        <div>
+            <button class="gmToolBtn" id="fogAllMapBtn">Fog All</button>
+            <button class="gmToolBtn" id="clearAllFogBtn">Clear All</button>
+        </div>
+    </div>
+    <div style="height:10px;"></div>
+    <p>Map's controls</p>
+    <div id="fogSection">
+        <div>
+            <button class="gmToolBtn" id="uploadMapBtn">Browse</button>
+            <button class="gmToolBtn" id="scaleMapBtn">Scale</button>
+            <button class="gmToolBtn" id="sendMapBtn">Send</button>
+            <button class="gmToolBtn" id="gridBtn">Grid</button>
+        </div>
+    </div>
+    <p id="test2">Hello there</p>
+</div>
+
+<!--distance scaling appearing panel-->
+<div id="distanceInputDiv" hidden>
+    <div class="row" style="height:20px;padding:0;">
+        <p>Insert distance (meters)</p>
+    </div>
+    <div class="row" style="height:20px;padding:0;">
+        <div class="col-7" style="padding:0;">
+            <input type="number" id="distanceInputValue" />
+        </div>
+        <div class="col-3" style="padding:0;">
+            <button id="distanceInputBtn">Ok</button>
+        </div>
+    </div>
+</div>
+
+<form enctype="multipart/form-data" method="post" asp-controller="Session" asp-action="UploadMap" target="serverResponseIframe" hidden>
+    <input id="uploadMapInput" type="file" asp-for="FormFileMap" accept="image/png, image/jpeg" hidden />
+    <input id="uploadFogInput" type="text" asp-for="FogBitmapAsString" hidden />
+    <input asp-for="User.IsGm" hidden />
+    <input asp-for="User.AccessString" hidden />
+    <input asp-for="User.CharacterName" hidden />
+    <input asp-for="User.IsConnected" hidden />
+    <input asp-for="User.PlayerNickname" hidden />
+    <input id="uploadMapSubmit" type="submit" hidden />
+</form>
+
+<form enctype="multipart/form-data" method="get" asp-controller="Session" asp-action="ScaleMap" target="serverResponseIframe" hidden>
+    <input id="pxPerDistanceInput" type="number" name="pxPerDistance" hidden/>
+    <input id="scaleMapSubmit" type="submit" hidden/>
+</form>
+
+<form enctype="multipart/form-data" method="get" asp-controller="Session" asp-action="ModifyFog" target="serverResponseIframe" hidden>
+    <input id="modifyFogInput" type="text" asp-for="FogBitmapAsString" hidden/>
+    <input id="modifyFogSubmit" type="submit" hidden/>
+</form>
+
+<!--handle server response in here-->
+<iframe id="serverResponseIframe" name="serverResponseIframe" style="display: none;"></iframe>
+
+<script type="module" src="~/js/gmScripts/interactionsSettings.js"></script>
+<script type="module" src="~/js/gmScripts/clearFog.js"></script>
+<script type="module" src="~/js/gmScripts/drawFog.js"></script>
+<script src="~/js/gmScripts/dragToolbar.js"></script>
+<script type="module" src="~/js/gmScripts/sliders.js"></script>
+<script type="module" src="~/js/gmScripts/mapScript.js"></script>

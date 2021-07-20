@@ -1,0 +1,60 @@
+﻿.centralBox {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin: auto;
+    margin-top: 10%;
+    height: 300px;
+    width: 450px;
+    border: 5px solid saddlebrown;
+    padding: 10px;
+    background-color: beige;
+}
+.switchArea{
+    justify-content:center;
+    align-content:center;
+    text-align: center;
+    height: 100px;
+}
+.switchArea > *{
+    text-align: center;
+    margin: 5px 0;
+}
+.switchContainer{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-content:center;
+}
+.switch{
+    border: 1px solid black;
+    width: 150px;
+    height: 25px;
+}
+.clicked {
+    background-color: #2196F3;
+    transition: .4s;
+}
+.unclicked {
+    background-color: lightgray;
+    transition: .4s;
+}
+.LogBox{
+    height: 20%;
+    width: 50%;
+    margin: auto;
+    border: 2px solid black;
+    background-color: lightgrey;
+    justify-content:center;
+    align-content:center;
+    text-align:center;
+}
+.field-validation-error {
+    color: red;
+    font-size: small;
+}
+.validationContainer{
+    text-align:right;
+    text-wrap:normal;
+    vertical-align:top;
+}

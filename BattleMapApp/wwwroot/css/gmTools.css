@@ -1,0 +1,111 @@
+﻿#gmToolbar {
+    display: block;
+    position: fixed;
+    background-color: burlywood;
+    border: 2px solid saddlebrown;
+    height: 500px;
+    width: 200px;
+    right: 10%;
+    text-align: center;
+}
+
+#gmToolbarMover{
+    width: 100%;
+    height: 25px;
+    background-color: saddlebrown;
+    cursor: grab
+}
+
+#fogSection {
+    background-color: goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -15px;
+    justify-content:space-around;
+    height:auto;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#distanceInputDiv{
+    height: 55px;
+    width: 200px;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    justify-content:center;
+    position:absolute;
+    background-color:red;
+}
+
+#distanceInputDiv div{
+    margin: 0;
+    padding: 5px 5px 5px 5px;
+    justify-content:center;
+}
+
+#distanceInputDiv p{
+    font-size:12px;
+    height:20px;
+}
+
+#distanceInputDiv button{
+    font-size:12px;
+}
+
+#distanceInputValue{
+    font-size:12px;
+    width: 100px;
+}
+
+.gmToolBtn {
+    height: 25px;
+    width: 80px;
+    font-size: 12px;
+}
+
+.fogSlider {
+    -webkit-appearance: none;
+    background-color: rosybrown;
+    height: 5px;
+    width: 70%;
+    border-radius: 15px;
+}
+
+.fogSlider:focus{
+    outline: none;
+}
+
+.fogSlider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    margin-top: 0px;
+    background: saddlebrown;
+    border-radius: 10px;
+    border: 1px solid saddlebrown;
+}
+
+.fogSlider::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    background: saddlebrown;
+    border-radius: 10px;
+    border: 1px solid saddlebrown;
+}
+
+.fogSlider::-ms-thumb{
+    height: 12px;
+    width: 12px;
+    background: saddlebrown;
+    border-radius: 10px;
+    border: 1px solid saddlebrown;
+}
+
+.fogSlider::-ms-track{
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+    cursor: pointer;
+}

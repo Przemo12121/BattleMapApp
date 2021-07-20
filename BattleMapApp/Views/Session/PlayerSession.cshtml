@@ -1,0 +1,94 @@
+﻿@model BattleMapApp.Models.ConnectionInfo
+
+<head>
+    <link rel="stylesheet" href="~/css/gameContent.css" />
+</head>
+
+<div id="mainScreenDiv" class="mainScreenDiv">
+    <div id="mapDiv" class="mapDiv">
+        @if (Model.Game.MapImage != null)
+        {
+            <img class="map" draggable="false" id="backgroundMap" src="@Url.Content(Model.Game.MapImage)" />
+        }
+        else
+        {
+        <img class="map" draggable="false" id="backgroundMap" />
+        }
+
+
+        <!--further added tokens belong here-->
+
+
+        <canvas class="fog" id="fogCanvas">
+            <!--Don't set fog's size in CSS, because it's scaling off bitmap, and thus making
+        drawing fog annoying to calculate; setting size in html makes it a lot easier-->
+        </canvas>
+        <canvas class="grid" id="gridCanvas">
+
+        </canvas>
+    </div>
+    <div id="test" style="position:absolute; margin-top:610px; margin-left:2px; background-color:aquamarine;">@Model.User.PlayerNickname</div>
+    <div id="test3" style="position:absolute; margin-top:640px; margin-right:10px; background-color:aquamarine;">@Model.User.CharacterName</div>
+
+
+</div>
+
+@if (Model.Game.MapImage != null)
+{
+    <script>
+        let backgroundMap = document.getElementById('backgroundMap');
+
+        let fogCanvas = document.getElementById('fogCanvas');
+        let gridCanvas = document.getElementById('gridCanvas');
+
+        backgroundMap.onload = function () {
+            fogCanvas.style.width = backgroundMap.width + "px";
+            fogCanvas.style.height = backgroundMap.height + "px";
+            fogCanvas.width = fogCanvas.offsetWidth;
+            fogCanvas.height = fogCanvas.offsetHeight;
+
+            gridCanvas.style.width = backgroundMap.width + "px";
+            gridCanvas.style.height = backgroundMap.height + "px";
+            gridCanvas.width = gridCanvas.offsetWidth;
+            gridCanvas.height = gridCanvas.offsetHeight;
+        }
+
+        var img = new Image();
+        img.addEventListener('load', function () {
+            var ctx = fogCanvas.getContext('2d'); 
+            ctx.drawImage(img, 0, 0);
+        }, false);
+        img.src = '../Images/GameMap/fog.png';
+    </script>
+}
+
+@if (Model.User.IsConnected)
+{
+    <p>You, @Model.User.PlayerNickname, are playing as @Model.User.CharacterName</p>
+    @if (Model.User.IsGm)
+    {
+        <partial name="~/Views/Session/GmSession.cshtml" />
+        <p>You, @Model.User.PlayerNickname, are playing as Game Master</p>
+    }
+}
+
+<!--hidden inputs and forms for model transition-->
+<input id="userAccessString" type="hidden" value="@Model.User.AccessString" />
+<input id="pxPerDistanceStoredValue" type="hidden" value="@Model.Game.PxPerDistance"/>
+
+<form enctype="multipart/form-data" method="get" asp-controller="Session" asp-action="Reload" hidden>
+    <input asp-for="User.PlayerNickname" hidden />
+    <input asp-for="User.CharacterName" hidden />
+    <input asp-for="User.AccessString" hidden />
+    <input asp-for="User.IsConnected" hidden />
+    <input asp-for="User.IsGm" hidden />
+    <input id="reloadSubmit" type="submit" hidden />
+</form>
+
+<!--scripts that manage connection with server-side-->
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script type="module" src="~/js/session.js"></script>
+
+<!--scripts that manage users' interactions-->
+<script type="module" src="~/js/tokenScript/tokenScript.js"></script>
+<script type="module" src="~/js/mapScaling.js"></script>

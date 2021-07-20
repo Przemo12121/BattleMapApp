@@ -1,0 +1,61 @@
+﻿@model ConnectionInfo
+@{
+    ViewData["Title"] = "Entry screen";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/sitesStyles.css"/>
+</head>
+
+<form method="post" asp-controller="Home" asp-action="TryEnterToSession">
+    
+    @Html.AntiForgeryToken()
+
+    <div class="centralBox">
+        <input id="enteringAsGm" type="hidden" asp-for="User.IsGm" value="false" />
+
+        <div style="height:100px;">
+            <div class="row">
+                <div class="col-5">Player's nickname:</div>
+                <div class="col-5">
+                    <input style="width:220px;" asp-for="User.PlayerNickname" />
+                </div>
+            </div>
+            <div class="validationContainer"><span asp-validation-for="User.PlayerNickname"></span></div>
+        </div>
+
+        <div style="height:100px;">
+            <div class="row">
+                <div class="col-5">Character's name:</div>
+                <div class="col-5">
+                    <input style="width:220px;" asp-for="User.CharacterName" />
+                </div>
+            </div>
+            <div class="validationContainer"><span asp-validation-for="User.CharacterName"></span></div>
+        </div>
+
+        <div class="switchArea">
+            <p>Enter as:</p>
+            <div class="switchContainer">
+                <div id="playerCheckbox" class="switch clicked" onclick="EnterAsPlayer()"><p>Player</p></div>
+                <div id="gameMasterCheckbox" class="switch unclicked" onclick="EnterAsGameMaster()"><p>Game Master</p></div>
+            </div>
+        </div>
+
+        <button style="margin-left: 40%; margin-right: 40%; width: 20%;" type="submit">Enter</button>
+    </div>
+</form>
+@{
+    if (Model.LogMessage.Text != null)
+    {
+        <div class="row" style="height:30px;"></div>
+        <div class="LogBox">
+            <p style="color: red;">@Model.LogMessage.Text</p>
+        </div>
+    }
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="~/js/entrySite.js"></script>

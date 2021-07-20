@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EC4CDEDmzLAhuae29llSe7qgCawqGm2PnOt/4oL2JFbs7SUwwx5eM8GMAJCbfoP3rM3vMsqeHa4WnCuRdP7Prg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lenovo\\Desktop\\Programowe Projectsy\\selfProjects\\BattleMapApp\\BattleMapApp\\BattleMapApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lenovo\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
+    "C:\\Users\\lenovo\\.nuget\\packages\\microsoft.jquery.unobtrusive.ajax\\3.2.6\\microsoft.jquery.unobtrusive.ajax.3.2.6.nupkg.sha512"
+  ],
+  "logs": []
+}
