@@ -46,11 +46,14 @@ namespace BattleMapApp.Models
             Game = null;
         }
         public LogMessage LogMessage { get; set; }
+
+        public Token Token { get; set; }
         
         [BindProperty]
         public User User { get; set; }
         public Game Game { get; set; }
         public FormFile FormFileMap { get; set; }
         public string FogBitmapAsString { get; set; }
+        public double PxPerDistance { get; set; }
     }
 }

@@ -70,7 +70,6 @@ function GetResponse() {
 }
 document.getElementById('serverResponseIframe').addEventListener('load', GetResponse);
 
-//for now it sets example scale to 100, should be set by user
 function Scale(e) {
     e = e || window.event;
     e.preventDefault();
@@ -135,9 +134,11 @@ function Scale(e) {
                 SetScale(newScale)
 
                 InvokeSetScale(newScale);
-                document.getElementById('scaleMapSubmit').click();
 
+                document.getElementById('pxPerDistanceInput').value = newScale
                 distanceInputDiv.hidden = true; //hide div
+
+                document.getElementById('scaleMapSubmit').click();
             }
         });
         gridCanvas.removeEventListener('mouseup', MeasureDistanceSecond);

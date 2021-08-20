@@ -76,10 +76,10 @@ namespace BattleMapApp.Controllers
             
         }
 
-        [HttpGet]
         public IActionResult ScaleMap(double pxPerDistance)
         {
             _gameSession.Game.PxPerDistance = pxPerDistance;
+
 
             return Json(new { status = 1,  scope = 2});
         }

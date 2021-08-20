@@ -1,0 +1,8 @@
+﻿.mainTokenScreen{
+    position: absolute;
+    width: 50%;
+    height: 75%;
+    background-color: burlywood;
+    border: 2px solid saddlebrown;
+    z-index: 10;
+}

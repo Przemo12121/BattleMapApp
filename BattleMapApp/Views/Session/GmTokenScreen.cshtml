@@ -1,0 +1,19 @@
+﻿@model ConnectionInfo;
+
+<link rel="stylesheet" href="~/css/gmTokens.css"/>
+
+<div id="mainTokenScreen" class="mainTokenScreen">
+    <!--Area for displaying existing tokens-->
+    <div id="displayArea" style="height:90%; background-color:white">
+
+    </div>
+    <!--Area for buttons-->
+    <div>
+        <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="serverResponseIframe">
+            <input type ="text" asp-for="Token.Name"/>
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+
+<script src="~/js/gmScripts/tokenControls.js"></script>

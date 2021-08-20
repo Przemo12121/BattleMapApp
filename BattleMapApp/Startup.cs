@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BattleMapApp.Hubs;
 using BattleMapApp.Session;
+using Microsoft.EntityFrameworkCore;
+using BattleMapApp.Data;
 
 namespace BattleMapApp
 {
@@ -28,6 +30,9 @@ namespace BattleMapApp
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddSingleton<IGameSession, GameSession>();
+
+            services.AddDbContext<TokenContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TokenContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

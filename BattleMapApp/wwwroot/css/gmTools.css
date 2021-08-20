@@ -16,7 +16,7 @@
     cursor: grab
 }
 
-#fogSection {
+.section {
     background-color: goldenrod;
     display: flex;
     flex-direction: column;
