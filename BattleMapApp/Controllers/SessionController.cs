@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR;
 using BattleMapApp.Hubs;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace BattleMapApp.Controllers
 {
@@ -89,8 +90,13 @@ namespace BattleMapApp.Controllers
 
             if(_gameSession.GmAccessString == newUser.AccessString)
             {
-                return View("PlayerSession",
-                    new Models.ConnectionInfo(newUser, _gameSession.Game));
+                //serializes connection info for TokenController to handle
+                TempData["serializedConnectionInfo"] = JsonConvert.SerializeObject(new Models.ConnectionInfo(newUser, _gameSession.Game));
+                //redirects to to Tokens/Index for collecting tokens from database and returns View
+                return RedirectToAction("Index", "Tokens"); 
+
+                //return View("PlayerSession", connectionInfo);
+                //new Models.ConnectionInfo(newUser, _gameSession.Game));
             }
             else
             {

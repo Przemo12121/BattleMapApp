@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\GameMap\" />
-    <Folder Include="wwwroot\Images\Tokens\" />
   </ItemGroup>
 
   <ItemGroup>

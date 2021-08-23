@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BattleMapApp.Data;
 using BattleMapApp.Models;
+using Newtonsoft.Json;
 
 namespace BattleMapApp.Controllers
 {
@@ -20,9 +21,19 @@ namespace BattleMapApp.Controllers
         }
 
         // GET: Tokens
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Token.ToListAsync());
+            //gets serialized connection info
+            string serializedConnectionInfo = TempData["serializedConnectionInfo"].ToString();
+            ConnectionInfo connectionInfo = JsonConvert.DeserializeObject<ConnectionInfo>(serializedConnectionInfo);
+
+            //gets tokens from database
+            IQueryable<Token> tokensQueried = from tokens in _context.Token
+                                          select tokens;
+
+            connectionInfo.TokensList = new List<Token>(tokensQueried);
+
+            return View("/Views/Session/PlayerSession.cshtml", connectionInfo);
         }
 
 /*        // GET: Tokens/Details/5

@@ -4,8 +4,17 @@
 
 <div id="mainTokenScreen" class="mainTokenScreen">
     <!--Area for displaying existing tokens-->
-    <div id="displayArea" style="height:90%; background-color:white">
-
+    <div id="tokensDisplayArea" style="height:90%; background-color:white">
+        <table>
+            <tbody>
+                @foreach (var item in Model.TokensList)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(name => item.Name)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
     <!--Area for buttons-->
     <div>
@@ -14,6 +23,16 @@
             <input type="submit" />
         </form>
     </div>
+
+    <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Index" target="serverResponseIframe" hidden>
+        <input id="getTokenListSubmit" type="submit" />
+    </form>
+
+    <iframe id="tokenListIframe" name="tokenListIframe" style="display: none;">
+
+    </iframe>
 </div>
+
+
 
 <script src="~/js/gmScripts/tokenControls.js"></script>

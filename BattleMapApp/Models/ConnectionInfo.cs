@@ -55,5 +55,6 @@ namespace BattleMapApp.Models
         public FormFile FormFileMap { get; set; }
         public string FogBitmapAsString { get; set; }
         public double PxPerDistance { get; set; }
+        public List<Token> TokensList { get; set; }
     }
 }

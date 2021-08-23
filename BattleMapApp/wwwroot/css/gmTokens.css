@@ -6,3 +6,8 @@
     border: 2px solid saddlebrown;
     z-index: 10;
 }
+
+#tokensDisplayArea{
+    display:flex;
+    
+}
