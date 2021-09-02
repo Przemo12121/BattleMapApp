@@ -18,28 +18,60 @@
     <!--Area for buttons-->
     <div id="buttonsDisplayArea" class="row">
         <!--create new-->
-        <div class="col-5" style="background-color: goldenrod; margin:3%; padding-bottom: 10px; text-align:center;">
-            <p>Create new token template</p>
-            <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="tokenListIframe">
-                <div class="row">
-                    <div class="col-5">
-                        <p>Token's name:</p>
+        <div class="col-6" style="text-align:center; display:flex; flex-direction:column" >
+            <p>Create new template</p>
+            <div class="tokenButtonsSection">
+                <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="tokenListIframe">
+                    <div class="row">
+                        <div class="col-5">
+                            <p>Token's name:</p>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" asp-for="Token.Name" style="width:140%;" />
+                        </div>
+                        <div class="col-4">
+                            <button onclick="document.getElementById('browseImagebtn').click()" style="font-size:10px; height:80%">Browse image</button>
+                            <input id="browseImagebtn" type="file" asp-for="FormFileMap" accept="image/*" hidden />
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <input type="text" asp-for="Token.Name" style="width:140%;"/>
-                    </div>
-                    <div class="col-4">
-                        <button onclick="document.getElementById('browseImagebtn').click()" style="font-size:10px; height:80%">Browse image</button>
-                        <input id="browseImagebtn" type="file" asp-for="FormFileMap" accept="image/*" hidden/>
-                    </div>
-                </div>
-                <button onclick="document.getElementById('createSubmit').click()">Create</button>
-                <input id="createSubmit" type="submit" hidden/>
-            </form>
+                    <button onclick="document.getElementById('createSubmit').click()">Create</button>
+                    <input id="createSubmit" type="submit" hidden />
+                </form>
+            </div>
         </div>
         <!--add to map-->
-        <div class="col-3" style="background-color: goldenrod; margin:3%;">
-
+        <div class="col-6"style="text-align:center; display:flex; flex-direction:column;">
+            <p>Add/Delete template</p>
+            <div style="height:0px;"></div>
+            <div class="tokenButtonsSection">
+                <div class="row">
+                    <div class="col-3">
+                        <p style="font-size: 12px;">Chosen template:</p>
+                    </div>
+                    <div class="col-4">
+                        <input id="chosenTemplateDisplay " type="text" disabled style="width: 100%" />
+                    </div>
+                    <div class="col-1">
+                        <p style="margin-left:-15px">As:</p>
+                    </div>
+                    <div class="col-3">
+                        <select id="tokenAlignmentSelect">
+                            <option style="color:lightgray;">Neutral</option>
+                            <option style="color:blue;">Player</option>
+                            <option style="color:green;">Ally</option>
+                            <option style="color:red;">Enemy</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button id="addTokenBtn" style="font-size:12px; height:100%">Add to game</button>
+                    </div>
+                    <div class="col-6">
+                        <button id="addTokenBtn" style="font-size:12px; height:100%">Remove template</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
