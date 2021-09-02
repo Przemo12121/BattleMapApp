@@ -22,11 +22,11 @@ Features:
   - Game Master can scale map, so everyone can know what distance is between various points on the map.
   - Game Master can show and hide grid that is visible to every player, in order to help them see distances.
   - Game Master can upload map, its scale and fog of war to the server for others players to download to their browsers.
-  - Game Master can create new tokens, store their templates, place those tokens on the map and assign them to players. (not yet included)
-  - Game Master can kick players out from the game. (not yet included)
-  - Every player can move tokens that are assigned to them (Game Master can move every token by default). (not yet included)
-  - Upon moving tokens, distance traveled is displayed to every player in order to help maintain movement. (not yet included)
-  - Chat. (not yet included)
-  - Rolling dice simulator. (not yet included)
+  - Game Master can create new tokens, store their templates, place those tokens on the map and assign them to players. (not yet implemented)
+  - Game Master can kick players out from the game. (not yet implemented)
+  - Every player can move tokens that are assigned to them (Game Master can move every token by default). (not yet implemented)
+  - Upon moving tokens, distance traveled is displayed to every player in order to help maintain movement. (not yet implemented)
+  - Chat. (not yet implemented)
+  - Rolling dice simulator. (not yet implemented)
   
   
