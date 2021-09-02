@@ -12,12 +12,14 @@ function GetTokenList() {
     var iframeDocument = myframe.contentDocument || myframe.contentWindow.document; // get access to DOM inside the iframe
     var content = iframeDocument.textContent || iframeDocument.body.textContent; // get text of iframe
 
-    //handle server response here
-    var json = JSON.parse(content);
-    //document.getElementById('test2').textContent = "?!?!?";//json['test'];
-    if (json['scope'] == 1) {
-        InvokeReload();
-        EnableInteractions();
+    if (content != null) {
+        //handle server response here
+        var json = JSON.parse(content);
+        //document.getElementById('test2').textContent = "?!?!?";//json['test'];
+        if (json['scope'] == 1) {
+            InvokeReload();
+            EnableInteractions();
+        }
     }
 }
 

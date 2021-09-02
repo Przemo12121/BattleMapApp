@@ -4,27 +4,46 @@
 
 <div id="mainTokenScreen" class="mainTokenScreen">
     <!--Area for displaying existing tokens-->
-    <div id="tokensDisplayArea" style="height:90%; background-color:white">
-        <table>
-            <tbody>
-                @foreach (var item in Model.TokensList)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(name => item.Name)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div id="tokensDisplayArea">
+        @foreach (var item in Model.TokensList)
+        {
+            <div class="tokenTemplate">
+                <div class="tokenTemplateHitbox">
+                    <img src="@Url.Content(item.Image)" />
+                    <p>@Html.DisplayFor(name => item.Name)</p>
+                </div>
+            </div>
+        }
     </div>
     <!--Area for buttons-->
-    <div>
-        <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="serverResponseIframe">
-            <input type ="text" asp-for="Token.Name"/>
-            <input type="submit" />
-        </form>
+    <div id="buttonsDisplayArea" class="row">
+        <!--create new-->
+        <div class="col-5" style="background-color: goldenrod; margin:3%; padding-bottom: 10px; text-align:center;">
+            <p>Create new token template</p>
+            <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="tokenListIframe">
+                <div class="row">
+                    <div class="col-5">
+                        <p>Token's name:</p>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" asp-for="Token.Name" style="width:140%;"/>
+                    </div>
+                    <div class="col-4">
+                        <button onclick="document.getElementById('browseImagebtn').click()" style="font-size:10px; height:80%">Browse image</button>
+                        <input id="browseImagebtn" type="file" asp-for="FormFileMap" accept="image/*" hidden/>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('createSubmit').click()">Create</button>
+                <input id="createSubmit" type="submit" hidden/>
+            </form>
+        </div>
+        <!--add to map-->
+        <div class="col-3" style="background-color: goldenrod; margin:3%;">
+
+        </div>
     </div>
 
-    <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Index" target="serverResponseIframe" hidden>
+    <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Index" target="tokenListIframe" hidden>
         <input id="getTokenListSubmit" type="submit" />
     </form>
 

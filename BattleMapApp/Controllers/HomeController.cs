@@ -60,12 +60,20 @@ namespace BattleMapApp.Controllers
 
         public IActionResult GmSession(ConnectionInfo xd)
         {
-            return View(xd);
+            xd.User = new User();
+            xd.User.IsGm = true;
+            xd.User.IsConnected = true;
+            xd.Game = new Game();
+            xd.TokensList = new List<Token>();
+            return View("~/Views/Session/PlayerSession.cshtml", xd);
         }
 
         public IActionResult PlayerSession(ConnectionInfo xd)
         {
-            return View(xd);
+            xd.User = new User();
+            xd.User.IsGm = false;
+            xd.Game = new Game();
+            return View("~/Views/Session/PlayerSession.cshtml", xd);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

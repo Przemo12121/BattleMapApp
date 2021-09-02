@@ -40,7 +40,7 @@ namespace BattleMapApp.Controllers
         [HttpPost]
         public IActionResult UploadMap(IFormFile formFileMap, string fogBitmapAsString)
         {
-            if(formFileMap != null && fogBitmapAsString != null)
+            if (formFileMap != null && fogBitmapAsString != null)
             {
                 string extension = System.IO.Path.GetExtension(formFileMap.FileName);
                 string mapPath = System.IO.Path.Combine(webRootPath, images, mapDir, "map" + extension);
@@ -68,13 +68,13 @@ namespace BattleMapApp.Controllers
 
                 //(add security)
 
-                return Json(new { status = 1, scope = 1}); //<- return response in json format, which will be captured with iframe
+                return Json(new { status = 1, scope = 1 }); //<- return response in json format, which will be captured with iframe
             }
             else
             {
                 return Json(new { }); //invalid files
             }
-            
+
         }
 
         public IActionResult ScaleMap(double pxPerDistance)
@@ -119,6 +119,32 @@ namespace BattleMapApp.Controllers
         public IActionResult Index(IFormFile x)
         {
             return View();
+        }
+
+        public IActionResult PlayerSession(Models.ConnectionInfo xd)
+        {
+            xd.User = new User();
+            xd.User.IsGm = false;
+            xd.Game = new Game();
+            return View(xd);
+        }
+        public IActionResult GmSession(Models.ConnectionInfo xd)
+        {
+            xd.User = new User();
+            xd.User.IsGm = true;
+            xd.User.IsConnected = true;
+            xd.Game = new Game();
+            xd.TokensList = new List<Token>();
+            return View("~/Views/Session/PlayerSession.cshtml", xd);
+        }
+        public IActionResult GmTokenScreen(Models.ConnectionInfo xd)
+        {
+            xd.User = new User();
+            xd.User.IsGm = true;
+            xd.User.IsConnected = true;
+            xd.Game = new Game();
+            xd.TokensList = new List<Token>();
+            return View("~/Views/Session/PlayerSession.cshtml", xd);
         }
     }
 }

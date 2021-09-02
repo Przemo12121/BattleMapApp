@@ -33,6 +33,7 @@ namespace BattleMapApp
 
             services.AddDbContext<TokenContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("TokenContext")));
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +63,8 @@ namespace BattleMapApp
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapHub<SessionHub>("/sessionhub");
             });
+
+            //app.usebro
         }
     }
 }

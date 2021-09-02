@@ -1,13 +1,52 @@
 ﻿.mainTokenScreen{
     position: absolute;
-    width: 50%;
-    height: 75%;
+    width: 750px;
+    height: auto;
     background-color: burlywood;
     border: 2px solid saddlebrown;
     z-index: 10;
+    vertical-align: bottom;
 }
 
-#tokensDisplayArea{
-    display:flex;
-    
+#buttonsDisplayArea {
+    height: 130px;
+    align-self: flex-end;
+    align-content:center;
+}
+
+
+#tokensDisplayArea {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 300px; 
+    background-color: white;
+}
+
+.tokenTemplate{
+    height:140px;
+    width:120px;
+}
+
+.tokenTemplateHitbox {
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.tokenTemplateHitbox img{
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.tokenTemplate p {
+    width: inherit;
+    text-align: center;
+    word-wrap:break-word;
 }
