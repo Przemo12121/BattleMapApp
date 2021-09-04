@@ -8,7 +8,7 @@
         @foreach (var item in Model.TokensList)
         {
             <div class="tokenTemplate">
-                <div class="tokenTemplateHitbox">
+                <div id="@item.Id" class="tokenTemplateHitbox" onclick="ChooseTemplate(this)" draggable="false">
                     <img src="@Url.Content(item.Image)" />
                     <p>@Html.DisplayFor(name => item.Name)</p>
                 </div>
@@ -49,7 +49,7 @@
                         <p style="font-size: 12px;">Chosen template:</p>
                     </div>
                     <div class="col-4">
-                        <input id="chosenTemplateDisplay " type="text" disabled style="width: 100%" />
+                        <input id="chosenTemplateDisplay" type="text" disabled style="width: 100%" />
                     </div>
                     <div class="col-1">
                         <p style="margin-left:-15px">As:</p>
@@ -64,11 +64,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <button id="addTokenBtn" style="font-size:12px; height:100%">Add to game</button>
+                    <div class="col-7">
+                        <button id="removeTokenBtn" style="font-size:12px; height:100%" onclick="DeleteChosenTemplate()">Remove template</button>
                     </div>
-                    <div class="col-6">
-                        <button id="addTokenBtn" style="font-size:12px; height:100%">Remove template</button>
+                    <div class="col-4">
+                        <button id="addTokenBtn" style="font-size:12px; height:100%">Add to game</button>
                     </div>
                 </div>
             </div>
@@ -79,11 +79,14 @@
         <input id="getTokenListSubmit" type="submit" />
     </form>
 
+    <form  enctype="multipart/form-data" method="get" asp-controller="Tokens" asp-action="Delete" target="tokenListIframe" hidden>
+        <input id="deleteTemplateIdInput" type="number" name="id"/>
+        <input id="deleteTemplateSubmit" type="submit"/>
+    </form>
+
     <iframe id="tokenListIframe" name="tokenListIframe" style="display: none;">
 
     </iframe>
 </div>
-
-
 
 <script src="~/js/gmScripts/tokenControls.js"></script>

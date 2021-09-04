@@ -47,6 +47,7 @@ namespace BattleMapApp.Models
         }
         public LogMessage LogMessage { get; set; }
 
+        [BindProperty]
         public Token Token { get; set; }
         
         [BindProperty]

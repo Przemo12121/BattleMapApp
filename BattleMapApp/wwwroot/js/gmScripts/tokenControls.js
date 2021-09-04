@@ -23,4 +23,26 @@ function GetTokenList() {
     }
 }
 
+let chosenTemplate = null;
+let templateNameDisplay = document.getElementById('chosenTemplateDisplay');
+let deleteTemplateIdInput = document.getElementById('deleteTemplateIdInput');
+let deleteTemplateSubmit = document.getElementById('deleteTemplateSubmit');
+
+function ChooseTemplate(sender) {
+    if (chosenTemplate != null) {
+        chosenTemplate.style.background = "";
+    }
+
+    sender.style.background = "blue";
+    chosenTemplate = sender;
+    templateNameDisplay.value = sender.getElementsByTagName('p')[0].textContent;
+}
+
+function DeleteChosenTemplate() {
+    if (chosenTemplate != null) {
+        deleteTemplateIdInput.value = chosenTemplate.id;
+        deleteTemplateSubmit.click();
+    }
+}
+
 document.getElementById('showHidePanelBtn').addEventListener('click', ShowHidePanel);
