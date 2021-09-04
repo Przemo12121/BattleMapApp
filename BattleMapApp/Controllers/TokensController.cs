@@ -65,7 +65,7 @@ namespace BattleMapApp.Controllers
         // GET: Tokens/Create
         public IActionResult Create()
         {
-            return Json(new { status = 1, scope = "bez modelu" });
+            return Json(new { status = 1, scope = 0 });
         }
 
         // POST: Tokens/Create
@@ -89,18 +89,30 @@ namespace BattleMapApp.Controllers
 
                 _context.Add(token);
                 await _context.SaveChangesAsync();
-                return Json(new { status = 1, scope = "udalo sie" });
+                return Json(new
+                {
+                    scope = "Tokens",
+                    action = "Create",
+                    status = 1,
+                    newTemplate = Json(new
+                    {
+                        id = token.Id,
+                        name = token.Name,
+                        image = token.Image
+                    })
+                });
             }
-            return Json(new { status = 1, scope = "nie udalo sie" });
+            return Json(new { status = 1, scope = 0 });
         }
 
-        
-        // GET: Tokens/Delete/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                return Json(new { status = 1, scope = "nie udalo sie" });
+                return Json(new { status = 1, scope = 0});
 
             }
 
@@ -108,12 +120,18 @@ namespace BattleMapApp.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (token == null)
             {
-                return Json(new { status = 1, scope = "nie udalo sie" });
+                return Json(new { status = 1, scope = 0});
             }
 
             _context.Token.Remove(token);
             await _context.SaveChangesAsync();
-            return Json(new { status = 1, scope = "udalo sie" });
+            return Json(new { scope = "Tokens",
+                action = "Delete",
+                status = 1,
+                removedTemplate = Json(new 
+                {
+                    id = token.Id, 
+                })});
         }
 
         // POST: Tokens/Delete/5

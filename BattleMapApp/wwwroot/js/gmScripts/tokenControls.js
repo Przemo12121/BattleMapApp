@@ -7,21 +7,52 @@ function ShowHidePanel() {
     else tokensPanel.hidden = true;
 }
 
-function GetTokenList() {
-    var myframe = document.getElementById('tokenListIframe');
-    var iframeDocument = myframe.contentDocument || myframe.contentWindow.document; // get access to DOM inside the iframe
-    var content = iframeDocument.textContent || iframeDocument.body.textContent; // get text of iframe
+function TokensControllerResponse() {
+    let myframe = document.getElementById('tokenListIframe');
+    let iframeDocument = myframe.contentDocument || myframe.contentWindow.document; // get access to DOM inside the iframe
+    let content = iframeDocument.textContent || iframeDocument.body.textContent; // get text of iframe
 
     if (content != null) {
         //handle server response here
-        var json = JSON.parse(content);
-        //document.getElementById('test2').textContent = "?!?!?";//json['test'];
-        if (json['scope'] == 1) {
-            InvokeReload();
-            EnableInteractions();
+        let json = JSON.parse(content);
+
+        if (json['scope'] == "Tokens") {
+            let tokensDisplayArea = document.getElementById('tokensDisplayArea');
+
+            if (json['action'] == "Create") {
+
+                let newTemplateImage = document.createElement('img');
+                newTemplateImage.src = json['newTemplate']['value']['image'];
+
+                let newTemplateName = document.createElement('p');
+                newTemplateName.textContent = json['newTemplate']['value']['name'];
+
+                let newTemplateHitbox = document.createElement("div");
+                newTemplateHitbox.className = "tokenTemplateHitbox";
+                newTemplateHitbox.draggable = false;
+                newTemplateHitbox.id = json['newTemplate']['value']['id'];
+                newTemplateHitbox.appendChild(newTemplateImage);
+                newTemplateHitbox.appendChild(newTemplateName);
+                newTemplateHitbox.addEventListener('click', function () {
+                    ChooseTemplate(newTemplateHitbox);
+                });
+
+                let newTemplate = document.createElement("div");
+                newTemplate.id = "template" + json['newTemplate']['value']['id'];
+                newTemplate.className = "tokenTemplate";
+                newTemplate.appendChild(newTemplateHitbox);
+
+                tokensDisplayArea.appendChild(newTemplate);
+            }
+            else if (json['action'] == "Delete") {
+                tokensDisplayArea.removeChild(document.getElementById("template" + json['removedTemplate']['value']['id']));
+                chosenTemplate = null;
+                templateNameDisplay.value = "";
+            }
         }
     }
 }
+document.getElementById('tokenListIframe').addEventListener('load', TokensControllerResponse);
 
 let chosenTemplate = null;
 let templateNameDisplay = document.getElementById('chosenTemplateDisplay');

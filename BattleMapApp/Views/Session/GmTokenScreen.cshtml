@@ -7,7 +7,8 @@
     <div id="tokensDisplayArea">
         @foreach (var item in Model.TokensList)
         {
-            <div class="tokenTemplate">
+            var templateName = "template" + item.Id;
+            <div id="@templateName" class="tokenTemplate">
                 <div id="@item.Id" class="tokenTemplateHitbox" onclick="ChooseTemplate(this)" draggable="false">
                     <img src="@Url.Content(item.Image)" />
                     <p>@Html.DisplayFor(name => item.Name)</p>
@@ -81,7 +82,7 @@
         <input id="createSubmit" type="submit" />
     </form>
 
-    <form enctype="multipart/form-data" method="get" asp-controller="Tokens" asp-action="Delete" target="tokenListIframe" hidden>
+    <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Delete" target="tokenListIframe" hidden>
         <input id="deleteTemplateIdInput" type="number" name="id" />
         <input id="deleteTemplateSubmit" type="submit" />
     </form>
