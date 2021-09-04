@@ -18,29 +18,25 @@
     <!--Area for buttons-->
     <div id="buttonsDisplayArea" class="row">
         <!--create new-->
-        <div class="col-6" style="text-align:center; display:flex; flex-direction:column" >
+        <div class="col-6" style="text-align:center; display:flex; flex-direction:column">
             <p>Create new template</p>
             <div class="tokenButtonsSection">
-                <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="tokenListIframe">
-                    <div class="row">
-                        <div class="col-5">
-                            <p>Token's name:</p>
-                        </div>
-                        <div class="col-3">
-                            <input type="text" asp-for="Token.Name" style="width:140%;" />
-                        </div>
-                        <div class="col-4">
-                            <button onclick="document.getElementById('browseImagebtn').click()" style="font-size:10px; height:80%">Browse image</button>
-                            <input id="browseImagebtn" type="file" asp-for="FormFileMap" accept="image/*" hidden />
-                        </div>
+                <div class="row">
+                    <div class="col-5">
+                        <p>Token's name:</p>
                     </div>
-                    <button onclick="document.getElementById('createSubmit').click()">Create</button>
-                    <input id="createSubmit" type="submit" hidden />
-                </form>
+                    <div class="col-3">
+                        <input id="tokenTemplateInput" type="text" style="width:140%;" />
+                    </div>
+                    <div class="col-4">
+                        <button onclick="document.getElementById('browseImageInput').click()" style="font-size:10px; height:80%">Browse image</button>
+                    </div>
+                </div>
+                <button id="createTemplateBtn">Create</button>
             </div>
         </div>
         <!--add to map-->
-        <div class="col-6"style="text-align:center; display:flex; flex-direction:column;">
+        <div class="col-6" style="text-align:center; display:flex; flex-direction:column;">
             <p>Add/Delete template</p>
             <div style="height:0px;"></div>
             <div class="tokenButtonsSection">
@@ -79,9 +75,15 @@
         <input id="getTokenListSubmit" type="submit" />
     </form>
 
-    <form  enctype="multipart/form-data" method="get" asp-controller="Tokens" asp-action="Delete" target="tokenListIframe" hidden>
-        <input id="deleteTemplateIdInput" type="number" name="id"/>
-        <input id="deleteTemplateSubmit" type="submit"/>
+    <form enctype="multipart/form-data" method="post" asp-controller="Tokens" asp-action="Create" target="tokenListIframe" hidden>
+        <input id="tokenTemplateFormInput" type="text" asp-for="Token.Name" style="width:140%;" />
+        <input id="browseImageInput" type="file" asp-for="FormFileMap" accept="image/*" />
+        <input id="createSubmit" type="submit" />
+    </form>
+
+    <form enctype="multipart/form-data" method="get" asp-controller="Tokens" asp-action="Delete" target="tokenListIframe" hidden>
+        <input id="deleteTemplateIdInput" type="number" name="id" />
+        <input id="deleteTemplateSubmit" type="submit" />
     </form>
 
     <iframe id="tokenListIframe" name="tokenListIframe" style="display: none;">
@@ -90,3 +92,9 @@
 </div>
 
 <script src="~/js/gmScripts/tokenControls.js"></script>
+<script>
+    document.getElementById('createTemplateBtn').addEventListener('click', function () {
+        document.getElementById('tokenTemplateFormInput').value = document.getElementById('tokenTemplateInput').value;
+        document.getElementById('createSubmit').click();
+    });
+</script>>
