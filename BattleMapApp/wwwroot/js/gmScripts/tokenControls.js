@@ -1,4 +1,41 @@
-﻿let tokensPanel = document.getElementById('mainTokenScreen');
+﻿import { MoveToken } from '../tokenScript/tokenScript.js';
+
+class TokenController {
+    tokensCounts = {};
+
+    CreateNewToken(template) {
+        this.tokensCounts[template.id] += 1;
+
+        //creating token
+        var token = document.createElement("div");
+        token.setAttribute("class", "token");
+
+        var tokenImage = new Image();
+        tokenImage.src = template.getElementsByTagName('img')[0].src;
+        tokenImage.setAttribute("class", "tokenImage");
+        token.id = template.id + template.getElementsByTagName('p')[0].textContent + this.tokensCounts[template.id];
+        token.appendChild(tokenImage);
+
+        tokensArea.appendChild(token);
+        MoveToken(token);
+    }
+
+    CreateNewTemplate(templateName) {
+        this.tokensCounts[templateName] = 0;
+    }
+
+    RemoveToken(name) {
+
+    }
+
+    RemoveTemplateAndAllAssoscietedTokens(templateName) {
+        delete this.tokensCounts[templateName];
+    }
+}
+
+let tokensPanel = document.getElementById('mainTokenScreen');
+let tokensArea = document.getElementById('tokensArea');
+let tokenController = new TokenController();
 
 function ShowHidePanel() {
     if (tokensPanel.hidden) {
@@ -6,6 +43,7 @@ function ShowHidePanel() {
     }
     else tokensPanel.hidden = true;
 }
+document.getElementById('showHidePanelBtn').addEventListener('click', ShowHidePanel);
 
 function TokensControllerResponse() {
     let myframe = document.getElementById('tokenListIframe');
@@ -43,6 +81,7 @@ function TokensControllerResponse() {
                 newTemplate.appendChild(newTemplateHitbox);
 
                 tokensDisplayArea.appendChild(newTemplate);
+                tokenController.CreateNewTemplate(newTemplate.id);
             }
             else if (json['action'] == "Delete") {
                 tokensDisplayArea.removeChild(document.getElementById("template" + json['removedTemplate']['value']['id']));
@@ -59,21 +98,18 @@ let templateNameDisplay = document.getElementById('chosenTemplateDisplay');
 let deleteTemplateIdInput = document.getElementById('deleteTemplateIdInput');
 let deleteTemplateSubmit = document.getElementById('deleteTemplateSubmit');
 
-function ChooseTemplate(sender) {
-    if (chosenTemplate != null) {
-        chosenTemplate.style.background = "";
-    }
-
-    sender.style.background = "blue";
-    chosenTemplate = sender;
-    templateNameDisplay.value = sender.getElementsByTagName('p')[0].textContent;
-}
-
 function DeleteChosenTemplate() {
-    if (chosenTemplate != null) {
-        deleteTemplateIdInput.value = chosenTemplate.id;
+    let chosenTemplateInput = document.getElementById('chosenTemplateInput');
+    if (chosenTemplateInput.value > null) {
+        deleteTemplateIdInput.value = chosenTemplateInput.value;
         deleteTemplateSubmit.click();
+        chosenTemplateInput.value = "";
     }
 }
+document.getElementById('removeTokenBtn').addEventListener('click', DeleteChosenTemplate);
 
-document.getElementById('showHidePanelBtn').addEventListener('click', ShowHidePanel);
+//chosen template must be browsed from new input
+function CreateToken() {
+    tokenController.CreateNewToken(document.getElementById(document.getElementById('chosenTemplateInput').value));
+}
+document.getElementById('addTokenBtn').addEventListener('click', CreateToken);

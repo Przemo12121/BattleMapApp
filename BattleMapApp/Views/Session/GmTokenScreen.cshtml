@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     <div class="col-7">
-                        <button id="removeTokenBtn" style="font-size:12px; height:100%" onclick="DeleteChosenTemplate()">Remove template</button>
+                        <button id="removeTokenBtn" style="font-size:12px; height:100%" >Remove template</button>
                     </div>
                     <div class="col-4">
                         <button id="addTokenBtn" style="font-size:12px; height:100%">Add to game</button>
@@ -90,12 +90,26 @@
     <iframe id="tokenListIframe" name="tokenListIframe" style="display: none;">
 
     </iframe>
+
+    <input type="text" id="chosenTemplateInput" />
 </div>
 
-<script src="~/js/gmScripts/tokenControls.js"></script>
+<script type="module" src="~/js/gmScripts/tokenControls.js"></script>
 <script>
     document.getElementById('createTemplateBtn').addEventListener('click', function () {
         document.getElementById('tokenTemplateFormInput').value = document.getElementById('tokenTemplateInput').value;
         document.getElementById('createSubmit').click();
-    });
+    }); 
+
+    function ChooseTemplate(sender) {
+        let chosenTemplateInput = document.getElementById('chosenTemplateInput');
+
+        if (chosenTemplateInput.value.length > 0) {
+            document.getElementById(chosenTemplateInput.value).style.background = "";
+        }
+
+        sender.style.background = "blue";
+        chosenTemplateInput.value = sender.id;
+        document.getElementById('chosenTemplateDisplay').value = sender.getElementsByTagName('p')[0].textContent;
+    }
 </script>>
