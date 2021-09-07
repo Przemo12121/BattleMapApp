@@ -108,7 +108,6 @@ function DeleteChosenTemplate() {
 }
 document.getElementById('removeTokenBtn').addEventListener('click', DeleteChosenTemplate);
 
-//chosen template must be browsed from new input
 function CreateToken() {
     tokenController.CreateNewToken(document.getElementById(document.getElementById('chosenTemplateInput').value));
 }

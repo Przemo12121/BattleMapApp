@@ -31,7 +31,38 @@
     <div style="height:10px;"></div>
     <p>Tokens' controls</p>
     <div id="tokenSection" class="section">
-        <button id="showHidePanelBtn" class="gmToolBtn">Panel</button>
+        <div class="row">
+            <div class="col-5">
+                <select>
+                    <option style="color:lightgray;">Neutral</option>
+                    <option style="color:blue;">Player</option>
+                    <option style="color:green;">Ally</option>
+                    <option style="color:red;">Enemy</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button id="showHidePanelBtn" class="gmToolBtn">Templates</button>
+            </div>
+        </div>
+        <div class="row" style="width:inherit; padding-right:0; margin-right:0">
+            <div class="col-2"  style="justify-content:left; text-align:left; padding:0">
+                <img src="~/Images/Tokens/1.png" style="height:25px; width:25px;" />
+            </div>
+            <div class="col-10" style="text-align:center;">
+                <button id="removeTokenBtn" class="gmToolBtn" style="margin-left:-11px">Remove</button>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <p>Assagned to:</p>
+                </div>
+                <div class="col-3">
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
     <p id="test2">Hello there</p>
 </div>
