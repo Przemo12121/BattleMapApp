@@ -39,7 +39,6 @@ C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMap
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\libman.json
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\Razor\Views\Session\PlayerSession.cshtml.g.cs
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\Razor\Views\Session\GmSession.cshtml.g.cs
-C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\BattleMapApp.csprojAssemblyReference.cache
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\Razor\Views\Session\GmTokenScreen.cshtml.g.cs
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Humanizer.dll
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -452,3 +451,4 @@ C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMap
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\BattleMapApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\BattleMapApp.csproj.AssemblyReference.cache

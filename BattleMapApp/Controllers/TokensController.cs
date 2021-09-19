@@ -82,7 +82,7 @@ namespace BattleMapApp.Controllers
 
                 using (var stream = System.IO.File.Create(tokenImagePath))
                 {
-                    formFileMap.CopyTo(stream);    //async copying cuts image if is too big
+                    formFileMap.CopyTo(stream);    //async copying cuts image if it is too big
                 }
 
                 token.Image = "../Images/Tokens/" + token.Name + extension;
@@ -124,6 +124,11 @@ namespace BattleMapApp.Controllers
             }
 
             _context.Token.Remove(token);
+            
+            var extension = System.IO.Path.GetExtension(token.Image);
+            var imagePath = System.IO.Path.Combine(tokenRootPath, token.Name + extension);
+            System.IO.File.Delete(imagePath);
+
             await _context.SaveChangesAsync();
             return Json(new { scope = "Tokens",
                 action = "Delete",

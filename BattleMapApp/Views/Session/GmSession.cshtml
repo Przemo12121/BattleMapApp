@@ -33,7 +33,7 @@
     <div id="tokenSection" class="section">
         <div class="row">
             <div class="col-5">
-                <select>
+                <select id="alignmentSelect">
                     <option style="color:lightgray;">Neutral</option>
                     <option style="color:blue;">Player</option>
                     <option style="color:green;">Ally</option>
@@ -46,7 +46,7 @@
         </div>
         <div class="row" style="width:inherit; padding-right:0; margin-right:0">
             <div class="col-2"  style="justify-content:left; text-align:left; padding:0">
-                <img src="~/Images/Tokens/1.png" style="height:25px; width:25px;" />
+                <img id="chosenTokenDisplay" style="height:25px; width:25px;" />
             </div>
             <div class="col-10" style="text-align:center;">
                 <button id="removeTokenBtn" class="gmToolBtn" style="margin-left:-11px">Remove</button>
@@ -56,7 +56,7 @@
                     <p>Assagned to:</p>
                 </div>
                 <div class="col-3">
-                    <select>
+                    <select id="assignedPLayerSelect">
                         <option>1</option>
                         <option>2</option>
                     </select>

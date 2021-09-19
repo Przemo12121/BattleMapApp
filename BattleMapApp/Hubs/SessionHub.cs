@@ -71,5 +71,20 @@ namespace BattleMapApp.Hubs
         {
             await Clients.Others.SendAsync("DrawGrid");
         }
+
+        public async Task CreateNewToken(string imagePath, string tokenId, string alignment)
+        {
+            await Clients.Others.SendAsync("CreateNewToken", imagePath, tokenId, alignment);
+        }
+
+        public async Task RemoveToken(string name)
+        {
+            await Clients.Others.SendAsync("RemoveToken", name);
+        }
+
+        public async Task ChangeAlignment(string token, string color)
+        {
+            await Clients.Others.SendAsync("ChangeAlignment", token, color);
+        }
     }
 }

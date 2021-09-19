@@ -1,4 +1,5 @@
 ﻿import { SetScale, DrawGrid } from '../js/mapScaling.js'
+import { CreateToken } from '../js/tokenScript/tokenScript.js'
 
 let userAccessString = document.getElementById("userAccessString").value;
 
@@ -8,6 +9,18 @@ connection.start().then(function () {
 
 }).catch(function (err) {
     return console.error(err.toString());
+});
+
+connection.on("ChangeAlignment", function (token, color) {
+    document.getElementById(token).style.backgroundColor = color;
+});
+
+connection.on("RemoveToken", function (name) {
+    document.getElementById(name).remove();
+});
+
+connection.on("CreateNewToken", function (imagePath, tokenId, alignment) {
+    CreateToken(imagePath, tokenId, alignment);
 });
 
 connection.on("DrawGrid", function () {
@@ -24,6 +37,7 @@ connection.on("Reload", function () {
 
 connection.on("MoveToken", function (tokenId, newPosX, newPosY) {
     var tokenToMove = document.getElementById(tokenId);
+
     tokenToMove.style.left = newPosX + "px";
     tokenToMove.style.top = newPosY + "px";
 });
@@ -87,4 +101,16 @@ function InvokeDrawGrid() {
     connection.invoke("DrawGrid");
 }
 
-export { InvokeMoveToken, InvokeClearFog, InvokeDrawFog, InvokeClearAllFog, InvokeFogAllMap, InvokeReload, InvokeSetScale, InvokeDrawGrid };
+function InvokeCreateToken(imagePath, tokenId, aignment) {
+    connection.invoke("CreateNewToken", imagePath, tokenId, aignment);
+}
+
+function InvokeRemoveToken(name) {
+    connection.invoke("RemoveToken", name);
+}
+
+function InvokeChangeAlignment(token, color) {
+    connection.invoke("ChangeAlignment", token, color);
+}
+
+export { InvokeMoveToken, InvokeClearFog, InvokeDrawFog, InvokeClearAllFog, InvokeFogAllMap, InvokeReload, InvokeSetScale, InvokeDrawGrid, InvokeCreateToken, InvokeRemoveToken, InvokeChangeAlignment };

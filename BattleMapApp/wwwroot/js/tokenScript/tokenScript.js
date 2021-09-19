@@ -1,5 +1,38 @@
 ﻿import { InvokeMoveToken }  from '../session.js';
 
+function CreateToken(imagePath, tokenId, alignment) {
+    var token = document.createElement("div");
+    token.setAttribute("class", "token");
+
+    switch (alignment) {
+        case 'Neutral':
+            token.style.backgroundColor = 'black';
+            break;
+        case 'Ally':
+            token.style.backgroundColor = 'green';
+            break;
+        case 'Player':
+            token.style.backgroundColor = 'blue';
+            break;
+        case 'Enemy':
+            token.style.backgroundColor = 'red';
+            break;
+        default:
+            token.style.backgroundColor = 'black';
+    }
+
+    var tokenImage = new Image();
+    tokenImage.draggable = false;
+    tokenImage.src = imagePath;
+    tokenImage.setAttribute("class", "tokenImage");
+    token.id = tokenId;
+    token.appendChild(tokenImage);
+
+    tokensArea.appendChild(token);
+
+    return token;
+}
+
 function MoveToken(token) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     
@@ -29,6 +62,7 @@ function MoveToken(token) {
         var newPosY = (token.offsetTop - pos2);
         token.style.top = newPosY + "px";
         token.style.left = newPosX + "px";
+
         InvokeMoveToken(token.id, newPosX, newPosY);
     }
 
@@ -39,4 +73,4 @@ function MoveToken(token) {
     }
 }
 
-export { MoveToken };
+export { MoveToken, CreateToken };
