@@ -452,3 +452,4 @@ C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMap
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\BattleMapApp.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\obj\Debug\net5.0\BattleMapApp.csproj.AssemblyReference.cache
+C:\Users\lenovo\Desktop\Programowe Projectsy\selfProjects\BattleMapApp\BattleMapApp\bin\Debug\net5.0\Microsoft.VisualStudio.Web.BrowserLink.dll

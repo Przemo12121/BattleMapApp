@@ -12,28 +12,53 @@
         }
         else
         {
-        <img class="map" draggable="false" id="backgroundMap" />
+            <img class="map" draggable="false" id="backgroundMap" />
         }
 
 
         <!--further added tokens belong here-->
         <div id="tokensArea">
-            
+
         </div>
 
         <canvas class="fog" id="fogCanvas">
             <!--Don't set fog's size in CSS, because it's scaling off bitmap, and thus making
-        drawing fog annoying to calculate; setting size in html makes it a lot easier-->
+            drawing fog annoying to calculate; setting size in html makes it a lot easier-->
         </canvas>
         <canvas class="grid" id="gridCanvas">
-
         </canvas>
     </div>
     <div id="test" style="position:absolute; margin-top:610px; margin-left:2px; background-color:aquamarine;">@Model.User.PlayerNickname</div>
     <div id="test3" style="position:absolute; margin-top:640px; margin-right:10px; background-color:aquamarine;">@Model.User.CharacterName</div>
-
-
 </div>
+
+
+<div id="playersBoard">
+    <p>Players:</p>
+    <div class="scrollablePlayerSection" style="height:20%;">
+        @if (Model.Game != null && !String.IsNullOrEmpty(Model.Game.GameMaster))
+        {
+            <p id="gameMasterPlayer">@Model.Game.GameMaster as GM</p>
+        }
+        else
+        {
+            <p id="gameMasterPlayer"></p>
+        }
+        <ul id="listOfPlayersUl" style="display:inline; text-align:left; margin: 0; padding: 0;">
+            @if (Model.Game != null)
+            {
+                @foreach (var player in Model.Game.Players)
+                {
+                    <li style="white-space: nowrap; text-align: left; margin: 0; padding: 0;">
+                        @player.PlayerNickname as @player.CharacterName
+                        <input type="text" value="@player.AccessString" hidden/>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
 
 @if (Model.Game.MapImage != null)
 {
@@ -57,26 +82,28 @@
 
         var img = new Image();
         img.addEventListener('load', function () {
-            var ctx = fogCanvas.getContext('2d'); 
+            var ctx = fogCanvas.getContext('2d');
             ctx.drawImage(img, 0, 0);
         }, false);
         img.src = '../Images/GameMap/fog.png';
     </script>
 }
 
-@if (Model.User.IsConnected)
+@if (Model.User.IsConnected && Model.User.IsGm)
 {
-    <p>You, @Model.User.PlayerNickname, are playing as @Model.User.CharacterName</p>
-    @if (Model.User.IsGm)
-    {
-        <partial name="~/Views/Session/GmSession.cshtml" />
-        <p>You, @Model.User.PlayerNickname, are playing as Game Master</p>
-    }
+    <partial name="~/Views/Session/GmSession.cshtml" />
+    /*<script>
+        let xyz = document.getElementById('test');
+        let ul = document.getElementById('listOfPlayersUl').getElementsByTagName('li');
+        for (var i = 0; i < ul.length; i++) {
+            xyz.textContent += ul[i].getElementsByTagName('input')[0].value;
+        }
+    </script>*/
 }
 
 <!--hidden inputs and forms for model transition-->
 <input id="userAccessString" type="hidden" value="@Model.User.AccessString" />
-<input id="pxPerDistanceStoredValue" type="hidden" value="@Model.Game.PxPerDistance"/>
+<input id="pxPerDistanceStoredValue" type="hidden" value="@Model.Game.PxPerDistance" />
 
 <form enctype="multipart/form-data" method="get" asp-controller="Session" asp-action="Reload" hidden>
     <input asp-for="User.PlayerNickname" hidden />

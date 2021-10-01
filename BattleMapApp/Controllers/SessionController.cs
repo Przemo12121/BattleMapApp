@@ -90,13 +90,11 @@ namespace BattleMapApp.Controllers
 
             if(_gameSession.GmAccessString == newUser.AccessString)
             {
+                _gameSession.Game.GameMaster = newUser.PlayerNickname;
                 //serializes connection info for TokenController to handle
                 TempData["serializedConnectionInfo"] = JsonConvert.SerializeObject(new Models.ConnectionInfo(newUser, _gameSession.Game));
                 //redirects to to Tokens/Index for collecting tokens from database and returns View
                 return RedirectToAction("Index", "Tokens"); 
-
-                //return View("PlayerSession", connectionInfo);
-                //new Models.ConnectionInfo(newUser, _gameSession.Game));
             }
             else
             {
@@ -106,6 +104,7 @@ namespace BattleMapApp.Controllers
 
         public IActionResult EnterAsPlayer(User newUser)//below binding must be changed (split), when reentering works, but first time entering
         {
+            _gameSession.Game.Players.Add(newUser);
             return View("PlayerSession",
                     new Models.ConnectionInfo(newUser, _gameSession.Game));
         }

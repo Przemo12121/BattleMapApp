@@ -50,3 +50,36 @@
     pointer-events: none;
     z-index: 4;
 }
+
+#playersBoard {
+    display: block;
+    height: 600px;
+    width: 200px;
+    background-color: brown;
+    position: fixed;
+    margin-left: -250px;
+    background-color: burlywood;
+    border: 2px solid saddlebrown;
+    text-align: center;
+}
+
+.section {
+    background-color: goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -15px;
+    justify-content: space-around;
+    height: auto;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.scrollablePlayerSection {
+    background-color: goldenrod;
+    margin-top: -15px;
+    width: 90%;
+    margin-left: 5%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}

@@ -42,6 +42,7 @@ namespace BattleMapApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -64,7 +65,7 @@ namespace BattleMapApp
                 endpoints.MapHub<SessionHub>("/sessionhub");
             });
 
-            //app.usebro
+            
         }
     }
 }
